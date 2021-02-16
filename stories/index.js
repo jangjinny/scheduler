@@ -11,6 +11,11 @@ import DayListItem from "components/DayListItem";
 import InterviewerListItem from "components/InterviewListItem";
 import InterviewerList from "components/InterviewList";
 import Appointment from "components/Appointment/index";
+import Header from "components/Appointment/Header";
+import Empty from "components/Appointment/Empty";
+import Show from "components/Appointment/Show";
+import Confirm from "components/Appointment/Confirm";
+
 
 const days = [
   {
@@ -131,3 +136,15 @@ storiesOf("DayList", module)
       setInterviewer={action("setInterviewer")}
     />
   ));
+
+  //story is a function that returns a React element --> we want to render our new appointment component
+
+  storiesOf("Appointment", module)
+  .addParameters({
+    backgrounds: [{ name: "white", value: "#fff", default: true }]
+  })
+  .add("Appointment", () => <Appointment />)
+  .add("Appointment with Time", () => <Appointment time="12pm" />)
+  .add("Header", () => <Header time="12pm"/>)
+  .add("Empty", () => <Empty onAdd={action("onAdd")}/>)
+  .add("Show", () => <Show student="Lydia Miller-Jones" interviewer={interviewer} onEdit={action("onEdit")} onDelete={action("onDelete")}/>)
