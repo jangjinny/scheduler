@@ -2,6 +2,8 @@ import React from "react";
 import InterviewListItem from "components/InterviewListItem";
 import "components/InterviewList.scss";
 
+//Interviewer List has 3 props: interviewers(array), interviewer(number), setInterviewer(func)
+
 export default function InterviewList(props) {
 
   const mapInterviewers = props.interviewers.map(interviewer => {
