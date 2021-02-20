@@ -39,7 +39,6 @@ export default function Appointment(props) {
     .catch(error => transition(ERROR_SAVE, true));
   };
 
-
   // CANCEL FUNCTION
   const cancel  = () => {
     console.log("CANCEL")
@@ -94,6 +93,5 @@ export default function Appointment(props) {
 
     </article>
     );
-
 
 };

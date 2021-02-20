@@ -7,15 +7,16 @@ export default function useVisualMode(initial) {
   const transition = (newMode, replace = false) => {
     if (replace) {
       setHistory(prev => 
-        [...prev.slice(0, prev.length-1), newMode] // replace the last element in history with newMode 
+        [...prev.slice(0, prev.length-1), newMode] // replace the last element in history with newMode 1, 1, new mode 
       )
     } else {
       setHistory(prev => 
-        [...prev, newMode] // add newMode to history 
+        [...prev, newMode] // add newMode to history
       );
       console.log("HIstory:", history);
     }
   }
+
 
   // function will allow us to return to the previous mode
   const back = () => {
