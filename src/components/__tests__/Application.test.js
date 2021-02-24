@@ -1,6 +1,6 @@
 import React from "react";
 
-import { render, cleanup, waitForElement, fireEvent, prettyDOM, getByText, getByAltText, findByText, queryByAltText, getByPlaceholderText, queryByText, getAllByTestId } from "@testing-library/react";
+import { render, cleanup, waitForElement, fireEvent, getByText, getByAltText, findByText, queryByAltText, getByPlaceholderText, queryByText, getAllByTestId, getByDisplayValue } from "@testing-library/react";
 
 import Application from "components/Application";
 
@@ -101,19 +101,19 @@ describe("Form", () => {
     fireEvent.click(queryByAltText(appointment, "Edit"));
 
     // 4. We change the name and save the interview
-    fireEvent.change(getByText(appointment, "Archie Cohen"), {
-      target: { value: "Lydia Miller-Jones" }
-    });
+    fireEvent.change(getByDisplayValue(appointment, "Archie Cohen")
+      , { target: { value: "Lydia Miller-Jones" }});
+
     fireEvent.click(getByAltText(appointment, "Sylvia Palmer"));
 
     await waitForElement(() => getByText(appointment, "Sylvia Palmer"));
 
     // 5. Check that the DayListItem with the text "Monday" also has the text "1 spots remaining".
     const day = getAllByTestId(container, "day").find(day =>
-      queryByText(day, "Monday")
+      queryByText(day, "Tuesday")
     );
   
-    expect(getByText(day, "1 spots remaining")).toBeInTheDocument();
+    expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
 
   });
 
