@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 import { render, cleanup, waitForElement, fireEvent, getByText, getByAltText, queryByAltText, getByPlaceholderText, queryByText, getAllByTestId, getByDisplayValue } from "@testing-library/react";
 
@@ -114,6 +115,66 @@ describe("Form", () => {
     );
   
     expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
+
+  });
+
+  it("shows the save error when failing to save an appointment", async () => {
+
+    axios.put.mockRejectedValueOnce();
+
+    const { container } = render(<Application />);
+    await waitForElement(() => getByText(container, "Archie Cohen"));
+    const appointments = getAllByTestId(container, "appointment");
+    const appointment = appointments[0];
+
+    fireEvent.click(getByAltText(appointment, "Add"));
+
+    fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
+      target: { value: "Lydia Miller-Jones" }
+    });
+    fireEvent.click(getByAltText(appointment, "Sylvia Palmer"));
+
+    
+    //clicking save
+    fireEvent.click(getByText(appointment, "Save"));
+    expect(getByText(appointment, "Saving")).toBeInTheDocument();
+
+    // must catch error
+    await waitForElement(() => getByText(container, "Error"));
+ 
+    //expect error message when failing to save
+    expect(getByText(appointment, "Cannot Save")).toBeInTheDocument();
+
+    // Check that the DayListItem with the text "Tuesday" didnt change
+    const day = getAllByTestId(container, "day").find(day =>
+      queryByText(day, "Tuesday")
+    );
+  
+    expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
+
+  });
+  
+  it("shows the delete error when failing to delete an existing appointment", async () => {
+
+    axios.delete.mockRejectedValueOnce();
+    const { container } = render(<Application />);
+    await waitForElement(() => getByText(container, "Archie Cohen"));
+  
+    const appointment = getAllByTestId(container, "appointment").find(
+      appointment => queryByText(appointment, "Archie Cohen")
+    );
+  
+    fireEvent.click(queryByAltText(appointment, "Delete"));
+  
+    expect(getByText(appointment, "Delete the appointment?")).toBeInTheDocument();
+  
+    fireEvent.click(queryByText(appointment, "Confirm"));
+    expect(getByText(appointment, "Deleting")).toBeInTheDocument();
+
+    await waitForElement(() => getByText(container, "Error"));
+  
+    // 7. Wait until the element with the "Add" button is displayed.
+    expect(getByText(appointment, "Cannot Delete")).toBeInTheDocument();
 
   });
 

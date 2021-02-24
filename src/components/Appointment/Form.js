@@ -11,11 +11,27 @@ export default function Form(props) {
   const [error, setError] = useState("");
 
   function validate() {
-    if (name === "") {
+    console.log("This is the name:", name, "This is the interviewr:", interviewer)
+    const options = [1, 2, 3, 4, 5, 6];
+
+    if (!name && !options.includes(interviewer)) {
+      console.log("ERRRRORRRR")
+      setError("Please enter name and select an interviewer");
+      return;
+    }
+
+    if (!name) {
+      console.log("ERRRRORRRR Name")
       setError("Student name cannot be blank");
       return;
     }
-  
+
+    if (!options.includes(interviewer)) {
+      console.log("ERRRRORRRR")
+      setError("Please choose an interviewer");
+      return;
+    }
+
     setError("");
     props.onSave(name, interviewer);
   }
@@ -29,10 +45,6 @@ export default function Form(props) {
     reset();
     props.onCancel();
   };
-
-  const onClick = () => {
-    props.onSave(name, interviewer);
-  }
 
   return (
     <main className="appointment__card appointment__card--create">
