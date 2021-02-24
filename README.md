@@ -4,6 +4,10 @@ Interview Scheduler is a single page application built using React, where user c
 
 ## Screenshots 
 
+!['Homepage'](https://github.com/jangjinny/scheduler/blob/master/public/images/homepage.png?raw=true)
+!['Add new appointments']
+
+
 
 ## Setup
 
