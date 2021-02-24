@@ -2,7 +2,9 @@
   "name": "scheduler",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8001",
   "dependencies": {
+    "@types/jest": "^26.0.20",
     "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "normalize.css": "^8.0.1",
@@ -16,11 +18,10 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public --ci",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "cypress": "cypress open -P ."
   },
-
   "browserslist": {
-    
     "production": [
       ">0.2%",
       "not dead",
@@ -44,12 +45,18 @@
     "@testing-library/react-hooks": "^5.0.3",
     "babel-loader": "^8.0.5",
     "node-sass": "^4.14.0",
+    "prop-types": "^15.7.2",
     "react-test-renderer": "^16.9.0"
   },
   "jest": {
     "watchPathIgnorePatterns": [
       "<rootDir>/node_modules/",
       "<rootDir>/.git/"
+    ]
+  },
+  "typeAcquisition": {
+    "include": [
+      "jest"
     ]
   }
 }

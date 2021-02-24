@@ -25,6 +25,8 @@ export default function Appointment(props) {
 
   const { mode, transition, back } = useVisualMode( props.interview ? SHOW : EMPTY );
 
+  // console.log("These are my props:", props.interview)
+
   // SAVE FUNCTION
   const save = (name, interviewer) => {
     const interview = {
@@ -50,7 +52,7 @@ export default function Appointment(props) {
   };
 
   return ( 
-    <article className="appointment">
+    <article className="appointment" data-testid="appointment">
       <Header time={props.time}/>
 
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
