@@ -42,7 +42,6 @@ describe("Form", () => {
     fireEvent.click(getByText(appointment, "Save"));
     expect(getByText(appointment, "Saving")).toBeInTheDocument();
 
-    // check daylistitem with day
     const day = getAllByTestId(container, "day").find(day =>
       queryByText(day, "Monday")
     );

@@ -20,5 +20,5 @@ export default function Button(props) {
    >
       {props.children}
    </button>
-   ); // render a button with the child of the button (from elements that I created)
+   );
 }
