@@ -1,7 +1,5 @@
 import React from "react";
 
-//Error has 2 props: message(string) and onClose(func)
-
 export default function Error(props) {
   
   return (

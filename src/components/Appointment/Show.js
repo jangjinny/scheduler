@@ -1,7 +1,5 @@
 import React from "react";
 
-//Show has 4 props: student(string), interviewer(object), onEdit(func), onDelete(func)
-
 export default function Show(props) {
 
   return (

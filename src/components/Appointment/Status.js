@@ -1,7 +1,5 @@
 import React from "react";
 
-// Status has 1 prop: message(string)
-
 export default function Status(props) {
 
   return (
