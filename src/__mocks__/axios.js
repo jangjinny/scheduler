@@ -1,5 +1,3 @@
-// fixture is used to describe reusable static data
-
 const fixtures = {
   days: [
     {
