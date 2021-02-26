@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import Button from "components/Button";
 import InterviewerList from "components/InterviewList";
 
-// Form has 5 props: name(string), interviewers(array), interviewer(number), onSave(func), onCancel(func)
-
 export default function Form(props) {
 
   const [name, setName ] = useState(props.name || "");
@@ -11,23 +9,20 @@ export default function Form(props) {
   const [error, setError] = useState("");
 
   function validate() {
-    console.log("This is the name:", name, "This is the interviewr:", interviewer)
-    const options = [1, 2, 3, 4, 5, 6];
+    const options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const interviewerIsChecked = options.includes(interviewer);
 
-    if (!name && !options.includes(interviewer)) {
-      console.log("ERRRRORRRR")
+    if (!name && !interviewerIsChecked) {
       setError("Please enter name and select an interviewer");
       return;
     }
 
     if (!name) {
-      console.log("ERRRRORRRR Name")
       setError("Student name cannot be blank");
       return;
     }
 
-    if (!options.includes(interviewer)) {
-      console.log("ERRRRORRRR")
+    if (!interviewerIsChecked) {
       setError("Please choose an interviewer");
       return;
     }
@@ -58,9 +53,6 @@ export default function Form(props) {
             placeholder="Enter Student Name"
             onChange={(event) => setName(event.target.value)} 
             data-testid="student-name-input"
-            /*
-              This must be a controlled component
-            */
           />
 
         </form>
