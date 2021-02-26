@@ -4,8 +4,9 @@ import axios from "axios";
 export default function useApplicationData() {
 
   const updateSpots = function (day, days, appointments) {
-  
-    const dayObj = days.find((item) => item.name === day);
+    
+    const newDays = [...days];
+    const dayObj = newDays.find((item) => item.name === day);
     const appointmentsIds = dayObj.appointments;
 
     let spots = 0;
@@ -17,9 +18,8 @@ export default function useApplicationData() {
     }
 
     dayObj.spots = spots;
-
-    const newDays = [...days];
-    return newDays;
+    const newDaysObj = [...newDays];
+    return newDaysObj;
   };
 
   const bookInterview = (id, interview) => {
@@ -36,7 +36,7 @@ export default function useApplicationData() {
     
     const url = `http://localhost:8001/api/appointments/${id}`
     return axios.put(url, appointment)
-    .then(() => { 
+    .then(() => {
       const days = updateSpots(state.day, state.days, appointments);
       setState({ ...state, appointments, days})
     })
