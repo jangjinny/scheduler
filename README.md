@@ -14,7 +14,7 @@ Interview Scheduler is a single page application built using React, where user c
 
 Install dependencies with `npm install`.
 Install Cypress with `npm install cypress --save-dev` for testing.
-Install scheduler-api from https://github.com/jangjinny/scheduler-api with `npm install`.
+Access database from https://github.com/jangjinny/scheduler-api.
 
 ## Running Webpack Development Server
 
