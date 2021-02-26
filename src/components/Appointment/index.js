@@ -9,8 +9,6 @@ import Error from "components/Appointment/Error";
 import Form from "components/Appointment/Form";
 import "components/Appointment/styles.scss"
 
-//if props.interviewer is truthy, render SHOW otherwise render EMPTY
-
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
