@@ -34,7 +34,7 @@ export default function useApplicationData() {
       [id]: appointment
     };
     
-    const url = `http://localhost:8001/api/appointments/${id}`
+    const url = `/api/appointments/${id}`
     return axios.put(url, appointment)
     .then(() => {
       const days = updateSpots(state.day, state.days, appointments);
@@ -53,7 +53,7 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
-    const url = `http://localhost:8001/api/appointments/${id}`
+    const url = `/api/appointments/${id}`
     return axios.delete(url)
     .then(() => { 
       const days = updateSpots(state.day, state.days, appointments);
@@ -71,17 +71,17 @@ export default function useApplicationData() {
   const setDay = day => setState({ ...state, day });
 
   // api requests
-  const getDaysPromise = axios.get(`http://localhost:8001/api/days`);
-  const getAppsPromise = axios.get(`http://localhost:8001/api/appointments`);
-  const getInterviewersPromise = axios.get(`http://localhost:8001/api/interviewers`);
+  const getDaysPromise = axios.get(`/api/days`);
+  const getAppsPromise = axios.get(`/api/appointments`);
+  const getInterviewersPromise = axios.get(`/api/interviewers`);
   const promises = [getDaysPromise, getAppsPromise, getInterviewersPromise];
 
   useEffect(() => {
     Promise.all(promises)
-      .then((all)=> {
-        setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}));
+      .then((all)=> { 
+        setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data})) 
       })
-    }, []);
+    }, [promises]);
 
   return { state, setDay, bookInterview, cancelInterview };
 };
